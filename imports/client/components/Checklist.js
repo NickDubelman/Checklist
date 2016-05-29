@@ -2,13 +2,13 @@ import React from 'react'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
 
-import Tasks from '/imports/api/tasks'
+import Checklists from '/imports/api/Checklists'
 
 const Checklist = React.createClass({
   handleSubmit(event){
     event.preventDefault()
     const checklistName = this.refs.checklistName.value
-    Tasks.insert({name: checklistName, userId: Meteor.userId()})
+    Meteor.call('Checklists.insert', checklistName)
     this.refs.newChecklistForm.reset()
   },
   render(){
@@ -25,6 +25,8 @@ const Checklist = React.createClass({
 })
 
 export default createContainer(() => {
+  Meteor.subscribe('myChecklists')
+  console.log(Checklists.find().fetch())
   return {
     
   }
