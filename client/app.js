@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import LogIn from '/imports/components/LogIn'
 import Main from '/imports/components/Main'
 import Dashboard from '/imports/components/Dashboard'
+import Checklist from '/imports/components/Checklist'
 import store, { history } from '/imports/store'
 
 Meteor.startup( () => {
@@ -15,6 +16,7 @@ Meteor.startup( () => {
       <Router history={ history }>
         <Route path="/" component={ Main } >
           <IndexRoute component={Dashboard}></IndexRoute>
+          <Route path="/checklist/:checklistId" component={Checklist} />
         </Route>
       </Router>
     </Provider>
