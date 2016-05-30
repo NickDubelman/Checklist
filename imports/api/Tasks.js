@@ -26,6 +26,7 @@ Meteor.methods({
         name,
         creator: this.userId,
         checklistId,
+        completed: false,
       })
     }
     else{
@@ -39,6 +40,16 @@ Meteor.methods({
     }
     else{
       Tasks.remove(taskId)
+    }
+  },
+  'Tasks.toggleCompleted'(taskId){
+    check(taskId, String)
+    if(Tasks.findOne({_id: taskId}).creator != this.userId){
+      throw new Meteor.Error('This task does not belong to you, silly hacker.');
+    }
+    else{
+      let prev = Tasks.findOne({_id: taskId}).completed
+      Tasks.update(taskId, { $set: {completed: !prev}})
     }
   }
 })

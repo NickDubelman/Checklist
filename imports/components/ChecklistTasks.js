@@ -9,15 +9,19 @@ const ChecklistTasks = React.createClass({
   handleDelete(taskId){
     Meteor.call('Tasks.remove', taskId)
   },
+  handleComplete(taskId){
+    Meteor.call('Tasks.toggleCompleted', taskId)
+  },
   render(){
     return(
       <div>
         {this.props.tasks.map(
             (task) => 
               <div key={task._id} className="taskLink" >
-                <Link to={`/task/${task._id}`}>
+                <span>
+                  <input type="checkbox" onClick={()=>this.handleComplete(task._id)} defaultChecked={task.completed}/>
                   {task.name} 
-                </Link>
+                </span>
                 <span onClick={()=>this.handleDelete(task._id)} className="deleteIcon"> &#10060; </span>
               </div>
         )}
