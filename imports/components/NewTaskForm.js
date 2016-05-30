@@ -17,7 +17,7 @@ const NewTaskForm = React.createClass({
   },
   render(){
     return(
-      <form style={newTaskForm} ref="newTaskForm" onSubmit={this.handleSubmit}>
+      <form style={newTaskForm} ref="newTaskForm" onSubmit={this.props.newTask}>
         <input ref="taskName" type="text" placeholder="Task name" />
         <button type="submit">Create</button>
       </form>

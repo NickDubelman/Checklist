@@ -17,7 +17,7 @@ const NewChecklistForm = React.createClass({
   },
   render(){
     return(
-      <form style={newChecklistForm} ref="newChecklistForm" onSubmit={this.handleSubmit}>
+      <form style={newChecklistForm} ref="newChecklistForm" onSubmit={this.props.newChecklist}>
         <input ref="checklistName" type="text" placeholder="Checklist name" />
         <button type="submit">Create</button>
       </form>

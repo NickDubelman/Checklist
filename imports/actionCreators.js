@@ -1,4 +1,6 @@
 //action creators
+
+//auth
 export function login(userId){
   return {
     type: 'LOGIN',
@@ -12,6 +14,22 @@ export function logout(userId){
   }
 }
 
+//checklists
+export function deleteChecklist(checklistId){
+  return {
+    type: 'DELETE_CHECKLIST',
+    checklistId
+  }
+}
+
+export function newChecklist(userId){
+  return {
+    type: 'NEW_CHECKLIST',
+    userId
+  }
+}
+
+//tasks
 export function toggleCompleted(taskId){
   return {
     type: 'TOGGLE_COMPLETED',
@@ -19,15 +37,16 @@ export function toggleCompleted(taskId){
   }
 }
 
-export function deleteChecklist(checklistId){
-  return {
-    type: 'DELETE_CHECKLIST',
-    checklistId
-  }
-}
 export function deleteTask(taskId){
   return {
     type: 'DELETE_TASK',
     taskId
+  }
+}
+
+export function newTask(checklistId){
+  return{
+    type: 'NEW_TASK',
+    checklistId
   }
 }

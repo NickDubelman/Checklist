@@ -14,8 +14,11 @@ const Checklist = React.createClass({
         <div>
           <Link style={back} to="/">Back</Link>
           <h1>{this.props.name} - Tasks</h1>
-          <ChecklistTasks checklistId={this.props.params.checklistId}/>
-          <NewTaskForm checklistId={this.props.params.checklistId}/>
+          <ChecklistTasks 
+            toggleCompleted={()=>this.props.toggleCompleted()} 
+            deleteTask={()=>this.props.deleteTask()} 
+            checklistId={this.props.params.checklistId}/>
+          <NewTaskForm newTask={()=>this.props.newTask()} checklistId={this.props.params.checklistId}/>
         </div>
       )
   }
