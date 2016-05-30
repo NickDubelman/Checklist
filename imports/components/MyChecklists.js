@@ -6,9 +6,6 @@ import { Link } from 'react-router'
 import Checklists from '/imports/api/Checklists'
 
 const MyChecklists = React.createClass({
-  handleDelete(checklistId){
-    Meteor.call('Checklists.remove', checklistId)
-  },
   render(){
     return(
       <div>
@@ -19,7 +16,7 @@ const MyChecklists = React.createClass({
                 <Link to={`/checklist/${checklist._id}`}>
                   {checklist.name} 
                 </Link>
-                <span onClick={()=>this.handleDelete(checklist._id)} className="deleteIcon"> &#10060; </span>
+                <span onClick={this.props.deleteChecklist} className="deleteIcon"> &#10060; </span>
               </div>
         )}
       </div>

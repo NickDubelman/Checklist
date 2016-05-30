@@ -2,20 +2,15 @@ import React from 'react'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 
 import Checklists from '/imports/api/Checklists'
 import LogIn from '/imports/components/LogIn'
 import MyChecklists from '/imports/components/MyChecklists'
 import NewChecklistForm from '/imports/components/NewChecklistForm'
 
+
 const Dashboard = React.createClass({
-  logout(event){
-    this.props.logout()
-    Meteor.logout()
-  },
-  handleDelete(checklistId){
-    Meteor.call('Checklists.remove', checklistId)
-  },
   render(){
     if(!this.props.loggedIn){
       content=<LogIn />
@@ -23,8 +18,8 @@ const Dashboard = React.createClass({
     else {
       content=(
         <div>
-          <Link to="/" onClick={()=>this.logout()}>Logout</Link>
-          <MyChecklists userId={Meteor.userId()} />
+          <Link to="/" onClick={()=>this.props.logout()}>Logout</Link>
+          <MyChecklists deleteChecklist={()=>this.props.deleteChecklist()} userId={this.props.currUser} />
           <NewChecklistForm />
         </div>
       )
@@ -33,12 +28,13 @@ const Dashboard = React.createClass({
   }
 })
 
-export default createContainer((props) => {
-  return {
-    logout: props.logout,
-    loggedIn: Meteor.userId(),
+const mapStateToProps = (state) => {
+  return{
+    loggedIn: state.auth.loggedIn,
+    currUser: state.auth.currUser
   }
-}, Dashboard)
+}
 
+export default connect(mapStateToProps)(Dashboard)
 
 let newChecklistForm={paddingTop: 20}
