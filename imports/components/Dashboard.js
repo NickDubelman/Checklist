@@ -10,11 +10,21 @@ const Dashboard = React.createClass({
   handleSubmit(event){
     event.preventDefault()
     const checklistName = this.refs.checklistName.value
-    Meteor.call('Checklists.insert', checklistName)
+    if ( checklistName === '' 
+      || checklistName === null 
+      || checklistName.trim() === ''){
+      alert("Checklist name cannot be empty")
+    }
+    else{
+      Meteor.call('Checklists.insert', checklistName)
+    }
     this.refs.newChecklistForm.reset()
   },
   logout(event){
     Meteor.logout()
+  },
+  handleDelete(checklistId){
+    Meteor.call('Checklists.remove', checklistId)
   },
   render(){
     if(!this.props.loggedIn){
@@ -26,7 +36,13 @@ const Dashboard = React.createClass({
           <Link to="/" onClick={()=>Meteor.logout()}>Logout</Link>
           <h1>Your Checklists</h1>
           {this.props.checklists.map(
-              (checklist) => <Link style={linkStyle} to={`/checklist/${checklist._id}`} key={checklist._id}>{checklist.name}</Link>
+              (checklist) => 
+                <div key={checklist._id} className="checklistLink" >
+                  <Link to={`/checklist/${checklist._id}`}>
+                    {checklist.name} 
+                  </Link>
+                  <span onClick={()=>this.handleDelete(checklist._id)} className="deleteIcon"> &#10060; </span>
+                </div>
           )}
           <form style={newChecklistForm} ref="newChecklistForm" onSubmit={this.handleSubmit}>
             <input ref="checklistName" type="text" placeholder="Checklist name" />
@@ -47,5 +63,5 @@ export default createContainer(() => {
   }
 }, Dashboard)
 
-let linkStyle={display: "block"}
+
 let newChecklistForm={paddingTop: 20}
