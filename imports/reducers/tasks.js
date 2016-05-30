@@ -1,4 +1,4 @@
-export function tasks(state=[], action){
+export default function tasks(state=[], action){
   switch(action.type){
     case 'NEW_TASK':
       console.log("new task")

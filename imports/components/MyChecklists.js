@@ -14,7 +14,7 @@ const MyChecklists = ({checklists, deleteChecklist}) => (
                 <Link to={`/checklist/${checklist._id}`}>
                   {checklist.name} 
                 </Link>
-                <span onClick={deleteChecklist} className="deleteIcon"> &#10060; </span>
+                <span onClick={()=>deleteChecklist()} className="deleteIcon"> &#10060; </span>
               </div>
         )}
       </div>
