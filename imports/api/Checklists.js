@@ -25,6 +25,7 @@ Meteor.methods({
       Checklists.insert({
         name,
         creator: this.userId,
+        tasks: [],
       })
     }
     else{

@@ -18,7 +18,9 @@ a, a:visited{
   padding-left: 5px;
 }
 
-.checklistLink:hover .deleteIcon{
+.checklistLink:hover .deleteIcon, 
+.taskLink:hover .deleteIcon{
   display: inline-block;
   cursor: pointer;
 }
+

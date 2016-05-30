@@ -1,8 +1,6 @@
 import React from 'react'
 import { Meteor } from 'meteor/meteor'
 
-import Checklists from '/imports/api/Checklists'
-
 const NewChecklistForm = React.createClass({
   handleSubmit(event){
     event.preventDefault()
