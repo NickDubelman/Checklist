@@ -9,19 +9,6 @@ import MyChecklists from '/imports/components/MyChecklists'
 import NewChecklistForm from '/imports/components/NewChecklistForm'
 
 const Dashboard = React.createClass({
-  handleSubmit(event){
-    event.preventDefault()
-    const checklistName = this.refs.checklistName.value
-    if ( checklistName === '' 
-      || checklistName === null 
-      || checklistName.trim() === ''){
-      alert("Checklist name cannot be empty")
-    }
-    else{
-      Meteor.call('Checklists.insert', checklistName)
-    }
-    this.refs.newChecklistForm.reset()
-  },
   logout(event){
     Meteor.logout()
   },
