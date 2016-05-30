@@ -5,8 +5,8 @@ import { browserHistory } from 'react-router'
 import rootReducer from '/imports/reducers/index'
 
 const auth = { 
-  "loggedIn": false, 
-  "currUser": null, 
+  "loggedIn": !!Meteor.userId(), 
+  "currUser": Meteor.userId(), 
 }
 const defaultState={
   auth

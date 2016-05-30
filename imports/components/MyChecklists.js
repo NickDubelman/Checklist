@@ -27,7 +27,7 @@ const MyChecklists = React.createClass({
   }
 })
 
-export default createContainer(() => {
+export default createContainer((props) => {
   Meteor.subscribe('myChecklists')
   return {
     checklists: Checklists.find().fetch()
