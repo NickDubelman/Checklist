@@ -4,8 +4,8 @@ import {render} from 'react-dom'
 import { Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 
+import App from '/imports/components/App'
 import LogIn from '/imports/components/LogIn'
-import Main from '/imports/components/Main'
 import Dashboard from '/imports/components/Dashboard'
 import Checklist from '/imports/components/Checklist'
 import store, { history } from '/imports/store'
@@ -14,7 +14,7 @@ Meteor.startup( () => {
   const router = (
     <Provider store={store}>
       <Router history={ history }>
-        <Route path="/" component={ Main } >
+        <Route path="/" component={ App } >
           <IndexRoute component={Dashboard}></IndexRoute>
           <Route path="/checklist/:checklistId" component={Checklist} />
         </Route>
@@ -22,4 +22,14 @@ Meteor.startup( () => {
     </Provider>
   )
   render(router, document.getElementById('app') )
+})
+
+var loginHook = function(error, state){
+  if (!error) {
+    store.dispatch({type: "LOGIN", userId: Meteor.userId()})
+  }
+}
+
+AccountsTemplates.configure({
+    onSubmitHook: loginHook
 })

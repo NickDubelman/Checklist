@@ -4,7 +4,10 @@ import { browserHistory } from 'react-router'
 
 import rootReducer from '/imports/reducers/index'
 
-const auth = { "loggedIn": false }
+const auth = { 
+  "loggedIn": false, 
+  "currUser": null, 
+}
 const defaultState={
   auth
 }

@@ -10,6 +10,7 @@ import NewChecklistForm from '/imports/components/NewChecklistForm'
 
 const Dashboard = React.createClass({
   logout(event){
+    this.props.logout()
     Meteor.logout()
   },
   handleDelete(checklistId){
@@ -22,7 +23,7 @@ const Dashboard = React.createClass({
     else {
       content=(
         <div>
-          <Link to="/" onClick={()=>Meteor.logout()}>Logout</Link>
+          <Link to="/" onClick={()=>this.logout()}>Logout</Link>
           <MyChecklists userId={Meteor.userId()} />
           <NewChecklistForm />
         </div>
@@ -32,8 +33,9 @@ const Dashboard = React.createClass({
   }
 })
 
-export default createContainer(() => {
+export default createContainer((props) => {
   return {
+    logout: props.logout,
     loggedIn: Meteor.userId(),
   }
 }, Dashboard)
