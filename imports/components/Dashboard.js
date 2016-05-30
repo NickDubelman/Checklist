@@ -5,6 +5,8 @@ import { Link } from 'react-router'
 
 import Checklists from '/imports/api/Checklists'
 import LogIn from '/imports/components/LogIn'
+import MyChecklists from '/imports/components/MyChecklists'
+import NewChecklistForm from '/imports/components/NewChecklistForm'
 
 const Dashboard = React.createClass({
   handleSubmit(event){
@@ -34,20 +36,8 @@ const Dashboard = React.createClass({
       content=(
         <div>
           <Link to="/" onClick={()=>Meteor.logout()}>Logout</Link>
-          <h1>Your Checklists</h1>
-          {this.props.checklists.map(
-              (checklist) => 
-                <div key={checklist._id} className="checklistLink" >
-                  <Link to={`/checklist/${checklist._id}`}>
-                    {checklist.name} 
-                  </Link>
-                  <span onClick={()=>this.handleDelete(checklist._id)} className="deleteIcon"> &#10060; </span>
-                </div>
-          )}
-          <form style={newChecklistForm} ref="newChecklistForm" onSubmit={this.handleSubmit}>
-            <input ref="checklistName" type="text" placeholder="Checklist name" />
-            <button type="submit">Create</button>
-          </form>
+          <MyChecklists userId={Meteor.userId()} />
+          <NewChecklistForm />
         </div>
       )
     }
@@ -56,10 +46,8 @@ const Dashboard = React.createClass({
 })
 
 export default createContainer(() => {
-  Meteor.subscribe('myChecklists')
   return {
     loggedIn: Meteor.userId(),
-    checklists: Checklists.find().fetch()
   }
 }, Dashboard)
 

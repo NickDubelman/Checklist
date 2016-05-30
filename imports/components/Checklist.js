@@ -9,7 +9,7 @@ const Checklist = React.createClass({
       return(
         <div>
           <Link style={back} to="/">Back</Link>
-          {this.props.name}
+          <h2>{this.props.name}</h2>
         </div>
       )
   }
