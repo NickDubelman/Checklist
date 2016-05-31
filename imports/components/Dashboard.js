@@ -9,7 +9,6 @@ import LogIn from '/imports/components/LogIn'
 import MyChecklists from '/imports/components/MyChecklists'
 import NewChecklistForm from '/imports/components/NewChecklistForm'
 
-
 const Dashboard = React.createClass({
   render(){
     if(!this.props.loggedIn){
@@ -19,7 +18,7 @@ const Dashboard = React.createClass({
       content=(
         <div>
           <Link to="/" onClick={()=>this.props.logout()}>Logout</Link>
-          <MyChecklists deleteChecklist={()=>this.props.deleteChecklist()} userId={this.props.currUser} />
+          <MyChecklists deleteChecklist={()=>this.props.deleteChecklist()} checklists={this.props.checklists}/>
           <NewChecklistForm newChecklist={()=>this.props.newChecklist()}/>
         </div>
       )
@@ -28,13 +27,12 @@ const Dashboard = React.createClass({
   }
 })
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({auth, checklists}) => {
   return{
-    loggedIn: state.auth.loggedIn,
-    currUser: state.auth.currUser
+    loggedIn: auth.loggedIn,
+    currUser: auth.currUser,
+    checklists: checklists.checklists, 
   }
 }
 
 export default connect(mapStateToProps)(Dashboard)
-
-let newChecklistForm={paddingTop: 20}

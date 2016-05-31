@@ -50,3 +50,9 @@ export function newTask(checklistId){
     checklistId
   }
 }
+
+export function setChecklists(){
+  return{
+    type: 'SET_CHECKLISTS'
+  }
+}
