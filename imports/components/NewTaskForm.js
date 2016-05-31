@@ -11,13 +11,14 @@ const NewTaskForm = React.createClass({
       alert("Task name cannot be empty")
     }
     else{
-      Meteor.call('Tasks.insert', taskName, this.props.checklistId)
+      //Meteor.call('Tasks.insert', taskName, this.props.checklistId)
+      this.props.newTask(this.props.checklistId, taskName)
     }
     this.refs.newTaskForm.reset()
   },
   render(){
     return(
-      <form style={newTaskForm} ref="newTaskForm" onSubmit={this.props.newTask}>
+      <form style={newTaskForm} ref="newTaskForm" onSubmit={(e)=>this.handleSubmit(e)}>
         <input ref="taskName" type="text" placeholder="Task name" />
         <button type="submit">Create</button>
       </form>

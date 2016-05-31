@@ -15,10 +15,10 @@ const Checklist = React.createClass({
           <Link style={back} to="/">Back</Link>
           <h1>{this.props.name} - Tasks</h1>
           <ChecklistTasks 
-            toggleCompleted={()=>this.props.toggleCompleted()} 
-            deleteTask={()=>this.props.deleteTask()} 
+            toggleCompleted={this.props.toggleCompleted} 
+            deleteTask={this.props.deleteTask} 
             checklistId={this.props.params.checklistId}/>
-          <NewTaskForm newTask={()=>this.props.newTask()} checklistId={this.props.params.checklistId}/>
+          <NewTaskForm newTask={this.props.newTask} checklistId={this.props.params.checklistId}/>
         </div>
       )
   }

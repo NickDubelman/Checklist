@@ -1,13 +1,13 @@
 export default function tasks(state=[], action){
   switch(action.type){
     case 'NEW_TASK':
-      console.log("new task")
+      console.log(action)
       return state
     case 'TOGGLE_COMPLETED': 
-      console.log("toggle")
+      console.log(action)
       return state
     case 'DELETE_TASK':
-      console.log("delete task")
+      console.log(action)
       return state
     default:
       return state

@@ -13,7 +13,6 @@ const NewChecklistForm = React.createClass({
     }
     else{
       //Meteor.call('Checklists.insert', checklistName)
-      //store.dispatch({type: 'NEW_CHECKLIST', creator: this.props.currUser, name: this.refs.checklistName.value})
       this.props.newChecklist(this.props.currUser, this.refs.checklistName.value)
     }
     this.refs.newChecklistForm.reset()

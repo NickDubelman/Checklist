@@ -45,10 +45,11 @@ export function deleteTask(taskId){
   }
 }
 
-export function newTask(checklistId){
+export function newTask(checklistId, name){
   return{
     type: 'NEW_TASK',
-    checklistId
+    checklistId,
+    name
   }
 }
 
