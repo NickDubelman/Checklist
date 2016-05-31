@@ -45,11 +45,10 @@ export function deleteTask(taskId){
   }
 }
 
-export function newTask(checklistId, name){
-  return{
-    type: 'NEW_TASK',
-    checklistId,
-    name
+//this is a thunk
+export function newTask(checklistId, name) {
+  return function(dispatch){
+    Meteor.call('Tasks.insert', checklistId, name)
   }
 }
 

@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'Tasks.insert'(name, checklistId){
+  'Tasks.insert'(checklistId, name){
     check(name, String)
 
     if ( name === '' 

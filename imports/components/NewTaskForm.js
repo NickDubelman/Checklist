@@ -11,7 +11,6 @@ const NewTaskForm = React.createClass({
       alert("Task name cannot be empty")
     }
     else{
-      //Meteor.call('Tasks.insert', taskName, this.props.checklistId)
       this.props.newTask(this.props.checklistId, taskName)
     }
     this.refs.newTaskForm.reset()

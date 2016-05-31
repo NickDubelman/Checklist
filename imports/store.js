@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
-import ReduxThunk from 'redux-thunk'
+import thunk from 'redux-thunk'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import { Tracker } from 'meteor/tracker'
@@ -7,9 +7,9 @@ import { Tracker } from 'meteor/tracker'
 import Checklists from '/imports/api/Checklists'
 import rootReducer from '/imports/reducers/index'
 
-const middleware = [ReduxThunk]
+const middleware = [thunk]
 
-const store = createStore(rootReducer, {}, applyMiddleware(...middleware))
+const store = applyMiddleware(thunk)(createStore)(rootReducer)
 export default store
 
 export const history = syncHistoryWithStore(browserHistory, store)
