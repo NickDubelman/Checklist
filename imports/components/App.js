@@ -5,13 +5,13 @@ import * as actionCreators from '/imports/actionCreators'
 
 import Main from '/imports/components/Main'
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return{
-    loggedIn: state.loggedIn
+    loggedIn: state.auth.loggedIn
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators(actionCreators, dispatch)
 }
 

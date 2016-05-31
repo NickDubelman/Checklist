@@ -15,7 +15,7 @@ Meteor.startup( () => {
     <Provider store={store}>
       <Router history={ history }>
         <Route path="/" component={ App } >
-          <IndexRoute component={Dashboard} />
+          <IndexRoute component={ Dashboard } />
           <Route path="/checklist/:checklistId" component={Checklist} />
         </Route>
       </Router>

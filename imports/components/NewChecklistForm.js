@@ -1,5 +1,6 @@
 import React from 'react'
 import { Meteor } from 'meteor/meteor'
+import store from '/imports/store'
 
 const NewChecklistForm = React.createClass({
   handleSubmit(event){
@@ -11,13 +12,16 @@ const NewChecklistForm = React.createClass({
       alert("Checklist name cannot be empty")
     }
     else{
-      Meteor.call('Checklists.insert', checklistName)
+      //Meteor.call('Checklists.insert', checklistName)
+      store.dispatch({type: 'NEW_CHECKLIST', creator: this.props.currUser, name: this.refs.checklistName.value})
     }
     this.refs.newChecklistForm.reset()
   },
   render(){
     return(
-      <form style={newChecklistForm} ref="newChecklistForm" onSubmit={this.props.newChecklist}>
+      <form 
+        style={newChecklistForm} ref="newChecklistForm" 
+        onSubmit={(event)=>this.handleSubmit(event)}>
         <input ref="checklistName" type="text" placeholder="Checklist name" />
         <button type="submit">Create</button>
       </form>

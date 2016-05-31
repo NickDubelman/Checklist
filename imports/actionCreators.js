@@ -22,10 +22,11 @@ export function deleteChecklist(checklistId){
   }
 }
 
-export function newChecklist(userId){
+export function newChecklist(creator, name){
   return {
     type: 'NEW_CHECKLIST',
-    userId
+    creator,
+    name
   }
 }
 
