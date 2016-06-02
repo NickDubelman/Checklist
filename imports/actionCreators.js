@@ -8,48 +8,30 @@ export function login(userId){
   }
 }
 
-export function logout(userId){
-  return {
-    type: 'LOGOUT'
-  }
+export function logout(){
+  return () => AccountsTemplates.logout()
 }
 
 //checklists
-export function deleteChecklist(checklistId){
-  return {
-    type: 'DELETE_CHECKLIST',
-    checklistId
-  }
+export function removeChecklist(checklistId){
+  return () => Meteor.call('Checklists.remove', checklistId)
 }
 
-export function newChecklist(creator, name){
-  return {
-    type: 'NEW_CHECKLIST',
-    creator,
-    name
-  }
+export function newChecklist(name){
+  return () => Meteor.call('Checklists.insert', name)
 }
 
 //tasks
 export function toggleCompleted(taskId){
-  return {
-    type: 'TOGGLE_COMPLETED',
-    taskId
-  }
+  return () => Meteor.call('Tasks.toggleCompleted', taskId)
 }
 
-export function deleteTask(taskId){
-  return {
-    type: 'DELETE_TASK',
-    taskId
-  }
+export function removeTask(taskId){
+  return () => Meteor.call('Tasks.remove', taskId)
 }
 
-//this is a thunk
 export function newTask(checklistId, name) {
-  return function(dispatch){
-    Meteor.call('Tasks.insert', checklistId, name)
-  }
+  return () => Meteor.call('Tasks.insert', checklistId, name)
 }
 
 export function setChecklists(){

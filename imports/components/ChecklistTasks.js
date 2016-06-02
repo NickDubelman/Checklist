@@ -5,13 +5,7 @@ import { Link } from 'react-router'
 
 import Tasks from '/imports/api/Tasks'
 
-const ChecklistTasks = React.createClass({
-  handleDelete(taskId){
-    Meteor.call('Tasks.remove', taskId)
-  },
-  handleComplete(taskId){
-    Meteor.call('Tasks.toggleCompleted', taskId)
-  },    
+const ChecklistTasks = React.createClass({  
   render(){
     return(
       <div>
@@ -22,7 +16,7 @@ const ChecklistTasks = React.createClass({
                   <input type="checkbox" onChange={()=>this.props.toggleCompleted(task._id)} defaultChecked={task.completed}/>
                   {task.name} 
                 </span>
-                <span onClick={()=>this.props.deleteTask(task._id)} className="deleteIcon"> &#10060; </span>
+                <span onClick={()=>this.props.removeTask(task._id)} className="deleteIcon"> &#10060; </span>
               </div>
         )}
       </div>

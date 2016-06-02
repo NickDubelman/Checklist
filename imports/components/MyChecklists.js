@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const MyChecklists = ({checklists, deleteChecklist}) => (
+const MyChecklists = ({checklists, removeChecklist}) => (
       <div>
         <h1>Your Checklists</h1>
         {checklists.map(
@@ -10,7 +10,7 @@ const MyChecklists = ({checklists, deleteChecklist}) => (
                 <Link to={`/checklist/${checklist._id}`}>
                   {checklist.name} 
                 </Link>
-                <span onClick={()=>deleteChecklist(checklist._id)} className="deleteIcon"> &#10060; </span>
+                <span onClick={()=>removeChecklist(checklist._id)} className="deleteIcon"> &#10060; </span>
               </div>
         )}
       </div>

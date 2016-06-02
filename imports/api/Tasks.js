@@ -24,8 +24,8 @@ Meteor.methods({
     if(this.userId){
       Tasks.insert({
         name,
-        creator: this.userId,
         checklistId,
+        creator: this.userId,
         completed: false,
       })
     }

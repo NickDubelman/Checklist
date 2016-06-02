@@ -18,7 +18,7 @@ const Dashboard = React.createClass({
       content=(
         <div>
           <Link to="/" onClick={()=>this.props.logout()}>Logout</Link>
-          <MyChecklists deleteChecklist={this.props.deleteChecklist} checklists={this.props.checklists}/>
+          <MyChecklists removeChecklist={this.props.removeChecklist} checklists={this.props.checklists}/>
           <NewChecklistForm newChecklist={this.props.newChecklist} currUser={this.props.currUser} />
         </div>
       )
