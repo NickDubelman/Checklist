@@ -12,8 +12,7 @@ const NewChecklistForm = React.createClass({
       alert("Checklist name cannot be empty")
     }
     else{
-      //Meteor.call('Checklists.insert', checklistName)
-      this.props.newChecklist(this.props.currUser, this.refs.checklistName.value)
+      this.props.newChecklist(this.refs.checklistName.value)
     }
     this.refs.newChecklistForm.reset()
   },
