@@ -22,3 +22,12 @@ Tracker.autorun(() => {
     checklists: Checklists.find().fetch()
   })
 })
+
+//dispatches an action everytime a user's login status changes
+//this consolidates login and logout into one action
+Tracker.autorun(() => {
+  store.dispatch({
+    type: 'SET_LOGIN_STATUS',
+    loggedIn: !!Meteor.userId()
+  })
+})

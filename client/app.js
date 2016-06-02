@@ -23,13 +23,3 @@ Meteor.startup( () => {
   )
   render(router, document.getElementById('app') )
 })
-
-var loginHook = function(error, state){
-  if (!error) {
-    store.dispatch({type: "LOGIN", userId: Meteor.userId()})
-  }
-}
-
-AccountsTemplates.configure({
-    onSubmitHook: loginHook
-})

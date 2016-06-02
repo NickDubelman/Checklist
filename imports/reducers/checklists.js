@@ -5,7 +5,6 @@ Meteor.subscribe('myChecklists')
 export default function checklists(state=[], action){
   switch(action.type){
     case 'SET_CHECKLISTS':
-      console.log("setting ", Checklists.find().fetch())
       return {...state, checklists: action.checklists}
       return state
     case 'NEW_CHECKLIST':
