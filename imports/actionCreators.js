@@ -1,17 +1,5 @@
 //action creators
 
-//auth
-export function login(userId){
-  return {
-    type: 'LOGIN',
-    userId
-  }
-}
-
-export function logout(){
-  return () => AccountsTemplates.logout()
-}
-
 //checklists
 export function removeChecklist(checklistId){
   return () => Meteor.call('Checklists.remove', checklistId)
@@ -32,10 +20,4 @@ export function removeTask(taskId){
 
 export function newTask(checklistId, name) {
   return () => Meteor.call('Tasks.insert', checklistId, name)
-}
-
-export function setChecklists(){
-  return{
-    type: 'SET_CHECKLISTS'
-  }
 }
