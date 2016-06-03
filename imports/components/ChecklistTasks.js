@@ -2,6 +2,7 @@ import React from 'react'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 
 import Tasks from '/imports/api/Tasks'
 
@@ -10,9 +11,11 @@ let subscription // need this to be global so that willUnmount can stop the
 
 const ChecklistTasks = React.createClass({
   componentWillMount(){
-    subscription = Meteor.subscribe('checklistTasks', this.props.checklistId)
+    // start a subscription when a checklist asks for its tasks
+    subscription = Meteor.subscribe('checklistTasks', this.props.checklistId) 
   },
   componentWillUnmount(){
+    // stop the subscription when the checklist no longer needs to know about its tasks
     subscription.stop()
   },
   render(){
@@ -33,8 +36,11 @@ const ChecklistTasks = React.createClass({
   }
 })
 
-export default createContainer((props) => {
-  return {
-    tasks: Tasks.find({checklistId: props.checklistId}).fetch()
+const mapStateToProps = ({tasks}) => {
+  return{
+    tasks: tasks.tasks
   }
-}, ChecklistTasks)
+}
+
+export default connect(mapStateToProps)(ChecklistTasks)
+

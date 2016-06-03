@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 import { Tracker } from 'meteor/tracker'
 
 import Checklists from '/imports/api/Checklists'
+import Tasks from '/imports/api/Tasks'
 import rootReducer from '/imports/reducers/index'
 
 const middleware = [thunk]
@@ -20,6 +21,13 @@ Tracker.autorun(() => {
   store.dispatch({
     type: 'SET_CHECKLISTS',
     checklists: Checklists.find().fetch()
+  })
+})
+
+Tracker.autorun(() => {
+  store.dispatch({
+    type: 'SET_TASKS',
+    tasks: Tasks.find().fetch()
   })
 })
 
