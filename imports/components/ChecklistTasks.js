@@ -5,7 +5,16 @@ import { Link } from 'react-router'
 
 import Tasks from '/imports/api/Tasks'
 
-const ChecklistTasks = React.createClass({  
+let subscription // need this to be global so that willUnmount can stop the
+                 // subscription started by willMount
+
+const ChecklistTasks = React.createClass({
+  componentWillMount(){
+    subscription = Meteor.subscribe('checklistTasks', this.props.checklistId)
+  },
+  componentWillUnmount(){
+    subscription.stop()
+  },
   render(){
     return(
       <div>
@@ -25,7 +34,6 @@ const ChecklistTasks = React.createClass({
 })
 
 export default createContainer((props) => {
-  Meteor.subscribe('checklistTasks')
   return {
     tasks: Tasks.find({checklistId: props.checklistId}).fetch()
   }

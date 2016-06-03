@@ -6,8 +6,8 @@ const Tasks = new Mongo.Collection('Tasks')
 export default Tasks
 
 if (Meteor.isServer) {
-  Meteor.publish('checklistTasks',function(){
-    return Tasks.find({creator: this.userId})
+  Meteor.publish('checklistTasks',function(checklistId){
+    return Tasks.find({creator: this.userId, checklistId})
   })
 }
 
