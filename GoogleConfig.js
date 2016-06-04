@@ -1,6 +1,7 @@
 // Sets up Google Accounts with API key
 
-/*ServiceConfiguration.configurations.upsert(
+/*
+ServiceConfiguration.configurations.upsert(
   { service: "google" },
   {
     $set: {
@@ -9,5 +10,6 @@
       secret: "II7vJKDV5qaYUx9hcfawDrgI"
     }
   }
-);*/
+);
 
+*/

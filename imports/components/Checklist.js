@@ -3,26 +3,22 @@ import { createContainer } from 'meteor/react-meteor-data'
 import { Link } from 'react-router'
 
 import Checklists from '/imports/api/Checklists'
-//import Tasks from '/imports/api/Tasks'
 
 import ChecklistTasks from '/imports/components/ChecklistTasks'
 import NewTaskForm from '/imports/components/NewTaskForm'
 
-const Checklist = React.createClass({
-  render() {
-      return(
-        <div>
-          <Link style={back} to="/">Back</Link>
-          <h1>{this.props.name} - Tasks</h1>
-          <ChecklistTasks 
-            toggleCompleted={this.props.toggleCompleted} 
-            removeTask={this.props.removeTask} 
-            checklistId={this.props.params.checklistId}/>
-          <NewTaskForm newTask={this.props.newTask} checklistId={this.props.params.checklistId}/>
-        </div>
-      )
-  }
-})
+const Checklist = (props) => (
+  <div>
+    <Link style={back} to="/">Back</Link>
+    <h1>{props.name} - Tasks</h1>
+    <ChecklistTasks 
+      toggleCompleted={props.toggleCompleted} 
+      removeTask={props.removeTask} 
+      checklistId={props.params.checklistId}
+      tasks={props.tasks}/>
+    <NewTaskForm newTask={props.newTask} checklistId={props.params.checklistId}/>
+  </div>
+)
 
 export default createContainer((props) => {
   Meteor.subscribe('myChecklists')

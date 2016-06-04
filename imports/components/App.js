@@ -5,9 +5,11 @@ import * as actionCreators from '/imports/actionCreators'
 
 import Main from '/imports/components/Main'
 
-const mapStateToProps = state => {
+const mapStateToProps = ({auth, checklists, tasks}) => {
   return{
-    loggedIn: state.auth.loggedIn
+    loggedIn: auth.loggedIn,
+    checklists: checklists.checklists,
+    tasks: tasks.tasks,
   }
 }
 
