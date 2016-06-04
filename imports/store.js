@@ -27,7 +27,8 @@ Tracker.autorun(() => {
 Tracker.autorun(() => {
   store.dispatch({
     type: 'SET_TASKS',
-    tasks: Tasks.find().fetch()
+    tasks: Tasks.find().fetch(),
+    hideCompleted: store.getState().tasks.hideCompleted
   })
 })
 

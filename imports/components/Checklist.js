@@ -11,7 +11,9 @@ const Checklist = (props) => (
   <div>
     <Link style={back} to="/">Back</Link>
     <h1>{props.name} - Tasks</h1>
-    <button onClick={()=>props.toggleShowCompleted()}style={hideButton}>Hide Completed</button>
+    <button onClick={()=>props.toggleShowCompleted()}style={hideButton}>
+      {props.hideCompleted ? "Show" : "Hide"} Completed
+    </button>
     <ChecklistTasks 
       toggleCompleted={props.toggleCompleted} 
       removeTask={props.removeTask} 
