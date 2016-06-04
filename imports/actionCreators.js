@@ -10,6 +10,12 @@ export function newChecklist(name){
 }
 
 //tasks
+export function toggleShowCompleted(){
+  return {
+    type: 'TOGGLE_SHOW_COMPLETED'
+  }
+}
+
 export function toggleCompleted(taskId){
   return () => Meteor.call('Tasks.toggleCompleted', taskId)
 }
