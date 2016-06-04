@@ -22,10 +22,10 @@ const Checklist = (props) => (
 
 export default createContainer((props) => {
   Meteor.subscribe('myChecklists')
-  curr = Checklists.findOne({_id: props.params.checklistId})
-  if(curr){
-    name = curr.name
-  }
+  let curr = Checklists.findOne({_id: props.params.checklistId}) 
+  if(curr) {
+    let name = curr.name
+  }  
   return {
     name: name
   }
