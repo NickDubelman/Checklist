@@ -27,3 +27,11 @@ export function removeTask(taskId){
 export function newTask(checklistId, name) {
   return () => Meteor.call('Tasks.insert', checklistId, name)
 }
+
+export function increasePriority(taskId) {
+  return () => Meteor.call('Tasks.increasePriority', taskId)
+}
+
+export function decreasePriority(taskId) {
+  return () => Meteor.call('Tasks.decreasePriority', taskId)
+}

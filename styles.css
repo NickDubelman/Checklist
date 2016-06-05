@@ -13,7 +13,7 @@ a, a:visited{
 
 .deleteIcon{
   display: none;
-  font-size: 12px;
+  font-size: 16px;
   color: red;
   padding-left: 5px;
 }
@@ -24,3 +24,43 @@ a, a:visited{
   cursor: pointer;
 }
 
+.priorityLabel{
+  display: inline-block;
+  width: 70px;
+}
+
+.priorityArrows{
+  display: inline-block;
+  width: 47px;
+}
+
+.arrow{
+  width: 18px;
+  color: #9F9F9F;
+  font-size: 22px;
+  display: inline-block;  
+  cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.upArrow{
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+
+.downArrow{
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+}
+
+.upArrow:hover{
+  color: #be0000;
+}
+
+.downArrow:hover{
+  color: #129fff;
+}

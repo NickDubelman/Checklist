@@ -14,12 +14,31 @@ const ChecklistTasks = React.createClass({
     taskSubscription.stop()
   },
   render(){
+    let sortedTasks = this.props.tasks.sort((a, b)=>{
+      if (a.priority < b.priority) return 1
+      if (a.priority > b.priority) return -1
+      return 0 
+    })
+
     return(
       <div>
         {this.props.tasks.map(
             (task) => 
               <div key={task._id} className="taskLink" >
                 <span>
+                  <div className="priorityLabel">
+                    {task.priority < 5 ? " Low" : null}
+                    {task.priority == 5 ? " Normal" : null}
+                    {task.priority > 5 ? " High" : null}
+                  </div>
+                  <div className="priorityArrows">
+                    <span className="arrow upArrow" onClick={()=>this.props.increasePriority(task._id)}>
+                      {task.priority<10 ? <span>&#10140;</span> : null}
+                    </span> 
+                    <span className="arrow downArrow" onClick={()=>this.props.decreasePriority(task._id)}>
+                      {task.priority>0 ? <span>&#10140;</span> : null }
+                    </span>
+                  </div>
                   <input type="checkbox" onChange={()=>this.props.toggleCompleted(task._id)} defaultChecked={task.completed}/>
                   {task.name} 
                 </span>
