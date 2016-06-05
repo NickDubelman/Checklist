@@ -25,12 +25,12 @@ a, a:visited{
 }
 
 .priorityLabel{
-  display: inline-block;
+  display: none;
   width: 70px;
 }
 
 .priorityArrows{
-  display: inline-block;
+  display: none;
   width: 47px;
 }
 

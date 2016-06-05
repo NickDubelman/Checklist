@@ -15,8 +15,8 @@ const ChecklistTasks = React.createClass({
   },
   render(){
     let sortedTasks = this.props.tasks.sort((a, b)=>{
-      if (a.priority < b.priority) return 1
-      if (a.priority > b.priority) return -1
+      if (a.priority < b.priority) return -1
+      if (a.priority > b.priority) return 1
       return 0 
     })
 
@@ -24,7 +24,7 @@ const ChecklistTasks = React.createClass({
       <div>
         {this.props.tasks.map(
             (task) => 
-              <div key={task._id} className="taskLink" >
+              <div key={task._id} className="taskLink">
                 <span>
                   <div className="priorityLabel">
                     {task.priority < 5 ? " Low" : null}

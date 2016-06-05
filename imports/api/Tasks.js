@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor'
 import { Mongo } from 'meteor/mongo'
 import { check } from 'meteor/check'
  
+import Checklists from '/imports/api/Checklists'
+
 const Tasks = new Mongo.Collection('Tasks')
 export default Tasks
 
@@ -22,13 +24,16 @@ Meteor.methods({
     }
 
     if(this.userId){
-      Tasks.insert({
+      let checklistTasks = Checklists.findOne({_id: checklistId}).tasks
+      let newTaskId = Tasks.insert({
         name,
         checklistId,
         creator: this.userId,
         completed: false,
-        priority: 5, 
+        priority: checklistTasks.length || 0, 
       })
+      checklistTasks.push(newTaskId)
+      Checklists.update(checklistId, { $set: {tasks: checklistTasks}})
     }
     else{
       throw new Meteor.Error('Not authorized');
